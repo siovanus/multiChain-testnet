@@ -32,15 +32,21 @@ Ontology MultiChain TestNet 目前已经上线，邀请广大开发者体验。�
 本体多链测试网包含一条主链和侧链，两条链之间可以完成跨链业务。
 
 - 主链ip：138.91.6.125
+
   rest port:  20334
+  
   ws port:    20335
+  
   rpc port：20336
 
   主链链ID：0
 
 - 侧链ip：138.91.6.193
+
   rest port:  20334
+  
   ws port:    20335
+  
   rpc port：20336
 
   侧链链ID：1
@@ -218,8 +224,8 @@ def unlock(args):
 
 cyano中可以通过设置实现主链和侧链之间的自由切换。
 
-图片
+![cyano](/resources/cyano.png)
 
 配置好主链和侧链的cyano钱包后，用户可以在smartx中开发、部署、测试跨链合约。
 
-图片
+![smartx](/resources/smartx.png)
