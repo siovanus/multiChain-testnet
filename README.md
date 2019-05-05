@@ -125,7 +125,7 @@ Ontology MultiChain TestNet 目前已经上线，邀请广大开发者体验。�
 
 某开发者想在链A和链B上发行资产，但是希望链A和链B上的资产互通，也就是说其需要发行一种OEP4资产，这种OEP4资产能够在链A和链B上同时使用，并且可以在链A和链B上自由转移。
 
-开发者首先下载OEP4合约模板，智能合约A部署在链A上，初始化10亿token给某个owner地址。智能合约B部署在链B上，初始化10亿token给该智能合约B的地址。
+开发者首先下载OEP4合约模板，智能合约A部署在链A上，调用init方法，初始化10亿token给某个owner地址。智能合约B部署在链B上，调用init方法，初始化10亿token给该智能合约B的地址。
 
 为了使智能合约A和智能合约B的资产可以在链A和链B之间互相转移，在OEP4标准接口的基础上，需要增加lock和unlock接口，用户在链A中调用lock接口将资产锁定在智能合约A，该接口调用跨链管理合约实现跨链调用智能合约B中的unlock接口，unlock接口在链B中将智能合约B中的资产释放给该用户。反之亦然。
 
@@ -165,6 +165,14 @@ def lock(fee, to_chain_id, destination_contract, address, amount):
     LockEvent(fee, to_chain_id, destination_contract, address, amount)
     return True
 ```
+参数为：
+```
+fee: 跨链交易的矿工费
+to_chain_id: 目标链的链ID
+destination_contract：目标合约的合约地址的反序
+address: 调用发起者地址，矿工费从该地址扣除
+amount：转移资产的数量
+```
 
 可以看到该接口先执行转账操作来冻结用户的链A资产，然后调用了跨链管理合约中的createCrossChainTx方法，该方法接受六个参数：
 
@@ -172,7 +180,7 @@ def lock(fee, to_chain_id, destination_contract, address, amount):
 fee: 跨链交易的矿工费
 address: 调用发起者地址，矿工费从该地址扣除
 to_chain_id: 目标链的链ID
-destination_contract：目标合约的合约地址
+destination_contract：目标合约的合约地址的反序
 function: 要跨链调用的目标合约方法名
 input_bytes：序列化之后的输入参数
 ```
