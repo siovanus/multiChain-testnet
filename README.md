@@ -237,3 +237,5 @@ cyano中可以通过设置实现主链和侧链之间的自由切换。
 配置好主链和侧链的cyano钱包后，用户可以在smartx中开发、部署、测试跨链合约。
 
 ![smartx](/resources/smartx.png)
+
+详细教程见[教程](tutorial.md)
