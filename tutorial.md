@@ -105,6 +105,16 @@ owner 为智能合约的管理人，我们更改为自己的地址即可
 
 ![1557371725480](https://i.loli.net/2019/05/09/5cd3b7e710158.png)
 <br/>
+
+此外我们还需要执行 setdestination 函数来设置对方子链OEP4跨链合约的地址
+![](https://i.loli.net/2019/05/15/5cdb84eae51e337089.png)
+<br/>
+
+另外 `destination_contract`是合约 hash 的反序，可以在 smartx 上试用工具栏下的`Hex String (Big-endian/Little-endian)`方法返回反序后的值
+![1557372908086](https://i.loli.net/2019/05/09/5cd3b7f80449d.png)
+<br/>
+
+<br/>
 <br/>
 
 部署智能合约B到侧链id 1上，同上原理，更换 Cyano为侧链 ip，在smartx上部署，部署完成后也需要执行 init，初始化10亿token给该智能合约B的地址
@@ -114,23 +124,22 @@ owner 为智能合约的管理人，我们更改为自己的地址即可
 
 #### 运行合约
 
-调用合约的lock函数进行跨链转账之前，主链往侧链转账需注意 Cyano处于主链网络上，lock函数中，指定`to chain_id`为侧链id
-
-另外 `destination_contract`是合约 hash 的反序，可以在 smartx 上试用工具栏下的`Hex String (Big-endian/Little-endian)`方法返回反序后的值
-
-![1557372908086](https://i.loli.net/2019/05/09/5cd3b7f80449d.png)
+**1. 调用合约的lock函数进行跨链转账**
 <br/>
-
+在此之前，主链往侧链转账需注意, Cyano需处于主链网络上，lock函数中，指定`to chain_id`为侧链id
+<br/>
 在一切准备就绪后，接下来，我们执行 lock 函数
 
 ![1557373167083](https://i.loli.net/2019/05/09/5cd3b80af311b.png)
 <br/>
 
 点击运行之后，会调用 Cyano进行签名。执行成功后，可以在 smartx 左侧的 Logs中查看到结果和交易 hash
+<br/>
+<br/>
 
-
-
-验证侧链是否到账之前，我们需要在Cyano上添加OEP4 Token的地址，此地址即为B合约部署在侧链的合约 hash
+**2. 验证侧链是否到账**
+<br/>
+在此之前，我们需要在Cyano上添加OEP4 Token的地址，此地址即为B合约部署在侧链的合约地址
 
 ![1557373896613](https://i.loli.net/2019/05/09/5cd3b81d3cb5e.png)
 
@@ -142,7 +151,7 @@ owner 为智能合约的管理人，我们更改为自己的地址即可
 
 
 
-此外，需要切换Cyano网络到侧链上，例，我们刚刚像侧链id为1的转账，Cyano中切换为138.91.6.193的侧链网络
+之后，需要切换Cyano网络到侧链上，例，我们刚刚像侧链id为1的转账，Cyano中切换为138.91.6.193的侧链网络
 
 ![1557373499176](https://i.loli.net/2019/05/09/5cd3b83e93f3e.png)
 
